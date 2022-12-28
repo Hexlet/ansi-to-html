@@ -106,7 +106,7 @@ module Ansi
               when 49       ; yield push_style("eb0") # reset bg
               when 90..97   ; yield push_style("ef#{8 + code - 90}")
               when 100..107 ; yield push_style("eb#{8 + code - 100}")
-              end 
+              end
             when :xterm256f
               code = data
               yield push_style("ef#{code}")
@@ -155,6 +155,7 @@ module Ansi
             '' }],
 
               # malformed sequences
+              [/\A\x1b\[[012][KJ]/, lambda { |m| '' }],
               [/\A\x1b\[?[\d;]{0,3}/, lambda { |m| '' }],
 
               # real text
