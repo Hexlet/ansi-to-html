@@ -83,7 +83,7 @@ module Ansi
       end
 
       def each
-        buf = ''
+        buf = +''
         @input.each do |chunk|
           buf << chunk
           tokenize(buf) do |tok, data|
